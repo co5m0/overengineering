@@ -1,5 +1,7 @@
-<html>
+<html lang="en">
     <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         /* Fira Code: https://github.com/tonsky/FiraCode */
         @import url('https://cdn.staticdelivr.com/gfonts/css2?family=Fira+Code:wght@300..700&display=swap');
@@ -42,7 +44,7 @@
           font-variant-ligatures: contextual;
           -webkit-overflow-scrolling: touch;
           -webkit-text-size-adjust: 100%;
-          margin: 0;
+          margin: 5vh;
           padding: 0;
         }
 
@@ -389,14 +391,86 @@
           font-weight: 600;
         }
 
-</style>
-        <title>test</title>
-    </head>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
 
+        @media (max-width: 768px) {
+            .container {
+                max-width: 100%;
+                padding: 0 15px;
+            }
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            position: relative
+        }
+
+        .header__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .header__logo {
+            display: flex;
+            flex: 1
+        }
+
+        .header__logo::after {
+            content: "";
+            background: repeating-linear-gradient(90deg,var(--accent),var(--accent) 2px,transparent 0,transparent 10px);
+            display: block;
+            width: 100%;
+            right: 10px
+        }
+
+        .header__logo a {
+            flex: none;
+            max-width: 100%;
+            text-decoration: none
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            background: var(--accent);
+            color: var(--background);
+            font-weight: 700;
+            padding: 5px 10px
+        }
+
+        @media print {
+            .header {
+                display: none
+            }
+        }
+
+    </style>
+     <title>test</title>
+    </head>
     <body>
-        <h1 id="this-is-a-test">This is a test</h1>
-        <h2 id="this-is-the-second-test">This is the second test</h2>
-        <h3 id="third-test">Third test</h3>
-        <p>Laste test</p>
+        <div class="container">
+            <header class="header">
+               <div class="header__inner">
+                  <div class="header__logo">
+                     <a href="https://panr.github.io/hugo-theme-terminal-demo/">
+                        <div class="logo">Overengineering.co5mo</div>
+                     </a>
+                  </div>
+            </header>
+            <h1 id="this-is-a-test">This is a test</h1>
+            <h2 id="this-is-the-second-test">This is the second
+            test</h2>
+            <h3 id="third-test">Third test</h3>
+            <p>Laste test</p>
+        </div>
     </body>
 </html>
