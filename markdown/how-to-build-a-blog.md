@@ -1,7 +1,12 @@
 ---
 title: Starting my personal blog in 2025
+date: 14/03/2025
+author:
+- co5mo
 ---
 # Starting my personal blog in 2025: a journey of discovery
+
+##### March 14, 2025
 
 In this post, I'll walk you through creating a simple yet effective blogging system using Markdown and pandoc. My approach focuses on simplicity while delivering professional results that can be easily deployed to Cloudflare or similar hosting services.
 
