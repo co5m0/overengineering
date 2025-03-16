@@ -74,6 +74,10 @@ for i in $(ls ./markdown | awk -F. '{print $1}'); do
 done
 ```
 
+## Checkout the repo
+
+If you want to have a closer look at the code checkout my [GitHub repo](https://github.com/co5m0/overengineering/)
+
 ### Refs:
 
 [^1]: [https://github.com/panr/terminal-css/](https://github.com/panr/terminal-css/)
