@@ -1,5 +1,6 @@
 ---
 title: overengineering.co5mo
+description: co5mo's blog
 ---
 
 ## Articles
