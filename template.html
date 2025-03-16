@@ -1,0 +1,27 @@
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <style> -->
+    <!-- </style> -->
+    $if(css)$
+      $for(css)$
+        <link rel="stylesheet" href="$css$" />
+      $endfor$
+    $endif$
+     <title>$title$</title>
+    </head>
+    <body>
+        <div class="container">
+            <header class="header">
+               <div class="header__inner">
+                  <div class="header__logo">
+                     <a href="index.html">
+                        <div class="logo">overengineering.co5mo</div>
+                     </a>
+                  </div>
+            </header>
+            $body$
+        </div>
+    </body>
+</html>
