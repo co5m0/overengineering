@@ -3,6 +3,7 @@ title: Starting my personal blog in 2025
 date: 16/03/2025
 author:
 - co5mo
+description: weekly blog - week 1
 ---
 # Starting my personal blog in 2025: a journey of discovery
 

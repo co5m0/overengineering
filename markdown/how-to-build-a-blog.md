@@ -3,6 +3,7 @@ title: Starting my personal blog in 2025
 date: 14/03/2025
 author:
 - co5mo
+description: tutorial - build a blog with pandoc
 ---
 # Starting my personal blog in 2025: a journey of discovery
 
