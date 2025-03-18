@@ -8,4 +8,5 @@ description: co5mo's blog
 
 ## Weekly
 - [week 1](./week-1.html)
+- [week 2](./week-2.html)
 
