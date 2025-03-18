@@ -41,7 +41,6 @@ This outputs the plain HTML, converting the Markdown formatting into HTML tags.
 Pandoc supports templates, allowing you to inject the compiled Markdown content into an HTML template. There was a Hugo theme that caught my attention, so I borrowed the CSS from their GitHub[^1] page and added it to the head section, with the $body$ variable rendered in the body tag:
 
 ```html
-
 <html lang="en">
     <head>
     <meta charset="utf-8">
@@ -52,8 +51,7 @@ Pandoc supports templates, allowing you to inject the compiled Markdown content 
      <title>$title$</title>
     </head>
     <body>
-            $body$
-        </div>
+        $body$
     </body>
 </html>
 ```

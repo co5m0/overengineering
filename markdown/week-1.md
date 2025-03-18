@@ -11,9 +11,11 @@ description: weekly blog - week 1
 
 <details>
 <summary>
-__TL;DR__: After wanting to start a blog for ages, I finally decided to commit to weekly writing to help complete my side projects.
+TL;DR: After wanting to start a blog for ages, I finally decided to commit to weekly writing to help complete my side projects.
 After exploring options, I discovered Cloudflare's hosting capabilities and settled on using Markdown with [pandoc](https://pandoc.org/MANUAL.html) as the ideal solution for my needs.
 </summary>
+
+
 I've always wanted to start a personal blog, but I never had the courage to build one or try popular platforms like Medium or Substack. A few days ago while exercising at the gym, I had a realization: setting a weekly deadline to write about my recent activities would motivate me to accomplish more and potentially finish my side projects instead of abandoning them on GitHub. Perhaps I'll finally open-source some of them.
 I grabbed my phone and began researching popular options.
 My requirements were straightforward:
