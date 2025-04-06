@@ -5,6 +5,7 @@ description: co5mo's blog
 
 ## Articles
 - [how to build a blog](./how-to-build-a-blog.html)
+- [how to use NixOS on ChromeOS](./nixos-on-chromeos.html)
 
 ## Weekly
 - [week 1 - Starting my personal blog in 2025](./week-1.html)

@@ -252,7 +252,7 @@
  pre {
    tab-size: 4;
    /* background: color-mix(in srgb, var(--foreground) 5%, transparent) !important; */
-   background: #363a4f !important;
+   background: #252731 !important;
    color: color-mix(in srgb, var(--foreground) 5%, var(--accent));
    padding: 20px 10px;
    font-size: 0.95em !important;
@@ -334,6 +334,10 @@
    border: none;
    background: var(--accent);
    height: 2px;
+ }
+
+ figure {
+     justify-self: center
  }
 
  /* Bold elements */
@@ -453,6 +457,7 @@
     }
 }
 
+
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -461,11 +466,11 @@ code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
-div.sourceCode { overflow: auto; }
+    div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -513,6 +518,15 @@ code span.pp { color: #bc7a00; } /* Preprocessor */
 code span.sc { color: #4070a0; } /* SpecialChar */
 code span.ss { color: #bb6688; } /* SpecialString */
 code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
+code span.va { color: #82b3f2; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+/* code { */
+/*   font-family: monospace, monospace; */
+/*   background-color: $monobackgroundcolor$; */
+/*   padding: .2em .4em; */
+/*   font-size: 85%; */
+/*   margin: 0; */
+/*   hyphens: manual; */
+/* } */
