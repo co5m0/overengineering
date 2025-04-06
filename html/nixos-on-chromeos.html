@@ -7,8 +7,8 @@
                   <link rel="stylesheet" href="assets/base.css" />
               <title>How to create a NixOS container in Crostini
 (ChromeOS)</title>
-    <meta name="description" content="guide - create a NixOS lxc
-container in Crostini (the ChromeOS linux subsystem)">
+    <meta name="description" content="create a NixOS lxc container in
+Crostini (the ChromeOS linux subsystem)">
     </head>
     <body>
         <div class="container">
@@ -24,20 +24,20 @@ container in Crostini (the ChromeOS linux subsystem)">
             id="how-to-create-a-nixos-container-in-crostini-chromeos">How
             to create a NixOS container in Crostini (ChromeOS)</h1>
             <h5 id="march-31-2025">March 31, 2025</h5>
-            <p>Linux on ChromeOS, sometimes called Crostini, allows you
-            to run Linux apps for development alongside your usual
-            ChromeOS desktop and apps.</p>
-            <p>Google has design a very complicated system of chinese
-            boxes<a href="#fn1" class="footnote-ref" id="fnref1"
-            role="doc-noteref"><sup>1</sup></a>, to ensure to run Linux
-            application as isolated as possible from the home OS, but
-            ensure to still have a sort of “seamless” integration
-            between the OSs.</p>
+            <p>Linux on ChromeOS, also known as Crostini, allows you to
+            run Linux applications for development alongside your
+            regular ChromeOS desktop and apps.</p>
+            <p>Google has designed a sophisticated system<a href="#fn1"
+            class="footnote-ref" id="fnref1"
+            role="doc-noteref"><sup>1</sup></a> of nested environments
+            to run Linux applications in isolation from the host OS
+            while maintaining a “seamless” integration between operating
+            systems.</p>
             <p>When you activate the “Linux development environment” on
-            ChromeOS, what the system does is creating a VM that runs
-            lxd, with one lxc debian container called “Penguin”.</p>
-            <p>We will do a quick overview on the main services and
-            terminology that we will use in this guide:</p>
+            ChromeOS, the system creates a VM running lxd with a single
+            Debian container called “Penguin”.</p>
+            <p>Let’s review the main services and terminology we’ll use
+            in this guide:</p>
             <ul>
             <li><p><strong>Crostini</strong> is the umbrella term for
             making Linux application support easy to use and integrating
@@ -68,15 +68,15 @@ container in Crostini (the ChromeOS linux subsystem)">
             clipboard data, etc… between Wayland applications inside the
             container and Chrome.</p></li>
             </ul>
-            <p>Every component is open-source, you can find the code <a
+            <p>All components are open-source, with code available <a
             href="https://chromium.googlesource.com/chromiumos/platform2/+/HEAD/vm_tools">here</a></p>
-            <h2 id="enable-custom-container-on-crostini">Enable custom
-            container on Crostini</h2>
-            <p>In order to create a NixOS container we should enable the
-            custom container support in ChromeOS. (TBF this step is only
-            necessary if you want the same level of integration you have
-            with the default one (eg. easy access from the terminal app,
-            one-click url opener, etc.. ) )</p>
+            <h2 id="enable-custom-container-support-on-crostini">Enable
+            custom container support on Crostini</h2>
+            <p>To create a NixOS container, we need to enable custom
+            container support in ChromeOS. (Note: This step is only
+            necessary if you want the same level of integration as the
+            default container, such as easy access from the Terminal
+            app, one-click URL opening, etc.)</p>
             <ol type="1">
             <li><p>Go to <em>chrome://flags</em> and enable the
             <em>#crostini-multi-container</em> flag</p></li>
@@ -95,15 +95,21 @@ container in Crostini (the ChromeOS linux subsystem)">
             <em>unstable</em> and archirecute <em>arm64</em> or
             <em>amd64</em>)</li>
             </ul>
-            <p>PUT HERE THE SCREEEN SHOT</p>
+            <figure>
+            <img src="./assets/images/chromeos-custom-container.png"
+            alt="screenshot of chromeos settings for creating a custom" />
+            <figcaption aria-hidden="true">screenshot of chromeos
+            settings for creating a custom</figcaption>
+            </figure>
             <p>Now you should see a new container displayed in the
-            terminal, but clicking on it should open a new terminal tab
-            and then it should crash right away</p>
-            <h2 id="setup-the-the-container">Setup the the
-            container</h2>
-            <p>Now we have the NixOS container created on the VM but we
-            can’t access it as the default one, to do so we need to
-            modify the nix configuration.o</p>
+            terminal. However, clicking on it will likely open a new
+            terminal tab that immediately crashes.</p>
+            <p>You can find the full guide <a
+            href="https://www.reddit.com/r/Crostini/comments/1bwmfyp/how_to_create_custom_containersfinallyyy/">here</a>.</p>
+            <h2 id="setup-the-container">Setup the container</h2>
+            <p>We now have the NixOS container created in the VM, but we
+            can’t access it like the default one. To fix this, we need
+            to modify the Nix configuration:</p>
             <ol type="1">
             <li><p>Open <code>crosh</code> with
             <code>Ctrl+Alt+t</code></p></li>
@@ -123,11 +129,8 @@ container in Crostini (the ChromeOS linux subsystem)">
             <li>Login into the container</li>
             </ol>
             <div class="sourceCode" id="cb3"><pre
-            class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lxc</span> exec nixos /bin/bash</span></code></pre></div>
+            class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lxc</span> exec test <span class="at">--</span> sudo <span class="at">--login</span></span></code></pre></div>
             <p>This command gives you access to the container shell</p>
-            <blockquote>
-            <p>If bash is not found thy with <code>/bin/sh</code></p>
-            </blockquote>
             <ol start="5" type="1">
             <li>Add this snippet to
             <code>/etc/nixos/configuration.nix</code> <a href="#fn2"
@@ -139,42 +142,59 @@ container in Crostini (the ChromeOS linux subsystem)">
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">enable</span>      <span class="op">=</span> <span class="cn">true</span><span class="op">;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">description</span> <span class="op">=</span> <span class="st">&quot;Chromium OS Garcon Bridge&quot;</span><span class="op">;</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">after</span>       <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;sommelier@0.service&quot;</span> <span class="st">&quot;sommelier-x@0.service&quot;</span> <span class="op">];</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">script</span>      <span class="op">=</span> <span class="st">&quot;/opt/google/cros-containers/bin/garcon --server&quot;</span><span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">script</span>      <span class="op">=</span> <span class="st">&quot;/opt/google/cros-containers/bin/garcon --server --allow_any_user&quot;</span><span class="op">;</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">wantedBy</span>    <span class="op">=</span> <span class="op">[</span> <span class="st">&quot;default.target&quot;</span> <span class="op">];</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>;</span></code></pre></div>
+            <blockquote>
+            <p>Garcon is designed to run under user 1000, but we need to
+            launch it as system wide service so we add
+            <code>--allow_any_user</code> flag</p>
+            </blockquote>
             <ol start="6" type="1">
-            <li>Exit from the container and restart it with</li>
+            <li>Exit from the container and restart it wit:</li>
             </ol>
             <div class="sourceCode" id="cb5"><pre
-            class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lxc</span> restart nix</span></code></pre></div>
+            class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lxc</span> restart nixos</span></code></pre></div>
             <ol start="7" type="1">
-            <li>Return in the terminal app and try to launch the nixos
+            <li>Return in the Terminal app and try to launch the NixOS
             container from the homepage</li>
             </ol>
-            <p>If the container crash try to reboot the entire Linux
+            <p>If the container crashes, try rebooting the entire Linux
             environment (right click on the terminal app in the dock
             &gt; shut down Linux)</p>
             <ol start="8" type="1">
-            <li>(Bonus) If for some reason the process doens’t work with
-            your configuration you can enable ssh in the NixOS container
-            and add the connection to the Terminal app, in this way to
-            can access the container from the homepace anyway. Lxc
-            should alway assign the same ip to the container so you
-            don’t have to worry about to find the right ip every time.
-            To find the ip, run <code>lxc list</code></li>
+            <li>(Bonus) If this process doesn’t work with your
+            configuration, you can enable SSH in the NixOS container and
+            add the connection to the Terminal app. This way, you can
+            still access the container from the homepage. LXC should
+            always assign the same IP to the container, so you won’t
+            need to find the right IP each time. To find the IP, run
+            <code>lxc list</code></li>
             </ol>
+            <h2 id="whats-next">What’s next ?</h2>
+            <p>At this stage, the container cannot launch graphical
+            applications. To enable this functionality, you’ll need to
+            integrate the <code>sommelier</code> service into your
+            configuration, which requires additional work. A good
+            starting point for this integration would be examining the
+            <a
+            href="https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=cros-container-guest-tools-git">cros-container-guest-tools-git</a>
+            package available on AUR.</p>
+            <p>If you have any questions or need further assistance,
+            feel free to contact me at <a
+            href="mailto:marioconsalvo1@gmail.com">marioconsalvo1@gmail.com</a></p>
             <h3 id="refs">Refs:</h3>
             <section id="footnotes"
             class="footnotes footnotes-end-of-document"
             role="doc-endnotes">
             <hr />
             <ol>
-            <li
-            id="fn1"><p>https://www.chromium.org/chromium-os/developer-library/guides/containers/crostini-developer-guide/crostini_services.png<a
+            <li id="fn1"><p><a
+            href="https://www.chromium.org/chromium-os/developer-library/guides/containers/crostini-developer-guide/crostini_services.png">https://www.chromium.org/chromium-os/developer-library/guides/containers/crostini-developer-guide/crostini_services.png</a><a
             href="#fnref1" class="footnote-back"
             role="doc-backlink">↩︎</a></p></li>
-            <li
-            id="fn2"><p>https://github.com/tazjin/nixini/blob/master/nixini-config.nix<a
+            <li id="fn2"><p><a
+            href="https://github.com/tazjin/nixini/blob/master/nixini-config.nix">https://github.com/tazjin/nixini/blob/master/nixini-config.nix</a><a
             href="#fnref2" class="footnote-back"
             role="doc-backlink">↩︎</a></p></li>
             </ol>
